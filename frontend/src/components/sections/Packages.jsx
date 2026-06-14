@@ -1,11 +1,11 @@
 import React from 'react';
 import { Check, Star, MessageCircle } from 'lucide-react';
-import { packages } from '../../mock/mock';
 import { useSiteConfig } from '../../context/SiteConfigContext';
 
 const Packages = () => {
   const { config } = useSiteConfig();
   const phone = config.brand.phoneRaw;
+  const packages = Array.isArray(config.packages) ? config.packages : [];
 
   return (
     <section id="paket" className="relative py-20 md:py-28 bg-royal overflow-hidden">
@@ -50,7 +50,7 @@ const Packages = () => {
                 <p className="text-sm text-purple-900/70 mt-2">{p.description}</p>
 
                 <ul className="mt-5 space-y-2 flex-1">
-                  {p.items.map((item) => (
+                  {(Array.isArray(p.items) ? p.items : []).map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-purple-950/90">
                       <span className="w-5 h-5 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center">
                         <Check size={12} />
@@ -83,3 +83,4 @@ const Packages = () => {
 };
 
 export default Packages;
+

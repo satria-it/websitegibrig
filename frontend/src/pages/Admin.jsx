@@ -1,11 +1,22 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Crown, Lock, Phone, MapPin, Sparkles, RefreshCcw, Save } from 'lucide-react';
+import {
+  Crown,
+  Lock,
+  Phone,
+  MapPin,
+  Sparkles,
+  RefreshCcw,
+  Save,
+  Plus,
+  Trash,
+} from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useSiteConfig } from '../context/SiteConfigContext';
 import { initialSiteConfig } from '../mock/mock';
 import { toast } from 'sonner';
+
 
 const Input = ({ label, value, onChange, placeholder, type = 'text' }) => {
   return (
@@ -43,7 +54,8 @@ const TextArea = ({ label, value, onChange, placeholder }) => {
 
 const Admin = () => {
   const navigate = useNavigate();
-  const { config, updateBrand, updateFooter, setConfig } = useSiteConfig();
+  const { config, updateBrand, updateFooter, updatePackages, updateGallery, updateTestimonials, setConfig } = useSiteConfig();
+
 
   const [mockUser, setMockUser] = useState(null);
 
@@ -105,8 +117,58 @@ const Admin = () => {
     toast.success('Reset ke default berhasil');
   };
 
+  const [formPackages, setFormPackages] = useState(Array.isArray(config.packages) ? config.packages : []);
+  const [formGallery, setFormGallery] = useState(Array.isArray(config.gallery) ? config.gallery : []);
+  const [formTestimonials, setFormTestimonials] = useState(
+    Array.isArray(config.testimonials) ? config.testimonials : []
+  );
+
+  useEffect(() => {
+    setFormPackages(Array.isArray(config.packages) ? config.packages : []);
+    setFormGallery(Array.isArray(config.gallery) ? config.gallery : []);
+    setFormTestimonials(Array.isArray(config.testimonials) ? config.testimonials : []);
+  }, [config.packages, config.gallery, config.testimonials]);
+
+  // sanitize untuk header/footer (dibutuhkan untuk onSaveAll)
+  const safeBrand = {
+    name: String(formBrand.name ?? ''),
+    subtitle: String(formBrand.subtitle ?? ''),
+    tagline: String(formBrand.tagline ?? ''),
+    phone: String(formBrand.phone ?? ''),
+    phoneRaw: String(formBrand.phoneRaw ?? ''),
+    address: String(formBrand.address ?? ''),
+  };
+
+  const safeFooter = {
+    description: String(formFooter.description ?? ''),
+    copyright: String(formFooter.copyright ?? ''),
+    quickLinks: Array.isArray(formFooter.quickLinks)
+      ? formFooter.quickLinks.slice(0, 5).map((l) => ({
+          label: String(l?.label ?? ''),
+          href: String(l?.href ?? ''),
+        }))
+      : quickLinks.map((l) => ({ label: String(l.label ?? ''), href: String(l.href ?? '') })),
+  };
+
+  const onSaveAll = () => {
+    updateBrand(safeBrand);
+    updateFooter(safeFooter);
+    updatePackages(formPackages);
+    updateGallery(formGallery);
+    updateTestimonials(formTestimonials);
+    toast.success('Perubahan header/footer & konten tersimpan');
+  };
+
+  const onSaveHeaderFooterOnly = () => {
+    updateBrand(safeBrand);
+    updateFooter(safeFooter);
+    toast.success('Perubahan header & footer tersimpan');
+  };
+
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-royal-dark to-purple-950 text-white relative overflow-hidden">
+
       <div className="absolute inset-0 grain" />
       <div className="orb bg-purple-500/40 w-[420px] h-[420px] -top-32 -left-24" />
       <div className="orb bg-amber-300/30 w-[360px] h-[360px] bottom-0 -right-24" />

@@ -40,8 +40,32 @@ export const SiteConfigProvider = ({ children }) => {
     setConfig((prev) => ({ ...prev, footer: { ...prev.footer, ...partial } }));
   };
 
+  const updatePackages = (packages) => {
+    setConfig((prev) => ({ ...prev, packages }));
+  };
+
+  const updateGallery = (gallery) => {
+    setConfig((prev) => ({ ...prev, gallery }));
+  };
+
+  const updateTestimonials = (testimonials) => {
+    setConfig((prev) => ({ ...prev, testimonials }));
+  };
+
   return (
-    <SiteConfigContext.Provider value={{ config, updateConfig, updateBrand, updateSocial, updateFooter, setConfig }}>
+    <SiteConfigContext.Provider
+      value={{
+        config,
+        updateConfig,
+        updateBrand,
+        updateSocial,
+        updateFooter,
+        updatePackages,
+        updateGallery,
+        updateTestimonials,
+        setConfig,
+      }}
+    >
       {children}
     </SiteConfigContext.Provider>
   );
@@ -52,3 +76,4 @@ export const useSiteConfig = () => {
   if (!ctx) throw new Error('useSiteConfig must be used within SiteConfigProvider');
   return ctx;
 };
+

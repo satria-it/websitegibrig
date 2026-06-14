@@ -1,8 +1,11 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
-import { testimonials } from '../../mock/mock';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 
 const Testimonials = () => {
+  const { config } = useSiteConfig();
+  const testimonials = Array.isArray(config.testimonials) ? config.testimonials : [];
+
   return (
     <section id="testimoni" className="relative py-20 md:py-28 bg-royal overflow-hidden">
       <div className="absolute inset-0 pattern-dots opacity-40" />
@@ -24,7 +27,7 @@ const Testimonials = () => {
             <div key={t.id} className="card-royal p-7 relative">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
-                  {Array.from({ length: t.rating }).map((_, i) => (
+                  {Array.from({ length: Number(t.rating) || 0 }).map((_, i) => (
                     <Star key={i} size={15} className="text-amber-500" fill="currentColor" />
                   ))}
                 </div>
@@ -53,3 +56,4 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
