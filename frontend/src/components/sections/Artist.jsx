@@ -60,16 +60,23 @@ const ArtistSection = () => {
   );
 };
 
-const SocialCard = ({ icon, title, label }) => (
-  <div className="card-royal flex items-center gap-3 px-4 py-3">
-    <span className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-700 to-purple-900 text-amber-300 flex items-center justify-center ring-1 ring-amber-300/40">
-      {icon}
-    </span>
-    <div className="leading-tight">
-      <div className="text-[10px] uppercase tracking-wider text-amber-700">{title}</div>
-      <div className="text-[12px] text-purple-950 font-medium">{label}</div>
+const SocialCard = ({ icon, title, label }) => {
+  const safeLabel = String(label ?? '');
+
+  return (
+    <div className="card-royal flex items-center gap-3 px-4 py-3">
+      <span className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-700 to-purple-900 text-amber-300 flex items-center justify-center ring-1 ring-amber-300/40 flex-shrink-0">
+        {icon}
+      </span>
+
+      <div className="leading-tight min-w-0">
+        <div className="text-[10px] uppercase tracking-wider text-amber-700">{title}</div>
+        <div className="text-[12px] text-purple-950 font-medium break-words">
+          {safeLabel}
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ArtistSection;
