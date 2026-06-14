@@ -54,6 +54,31 @@ const TextArea = ({ label, value, onChange, placeholder }) => {
   );
 };
 
+const FileToDataUrl = ({ accept = 'image/*', onPick, label = 'Upload', helpText }) => {
+  return (
+    <label className="block">
+      <div className="text-[11px] uppercase tracking-[0.18em] text-amber-700 font-semibold mb-2">
+        {label}
+      </div>
+      <input
+        type="file"
+        accept={accept}
+        className="w-full" 
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            if (typeof reader.result === 'string') onPick(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }}
+      />
+      {helpText ? <div className="text-xs text-purple-200/80 mt-2">{helpText}</div> : null}
+    </label>
+  );
+};
+
 const PackagesAdminEditor = ({ formPackages, setFormPackages, phoneRaw }) => {
   const [working, setWorking] = useState(formPackages);
 
@@ -116,10 +141,23 @@ const PackagesAdminEditor = ({ formPackages, setFormPackages, phoneRaw }) => {
                 setWorking((s) => s.map((x) => (x.id === p.id ? { ...x, price: v } : x)));
               }} />
 
-              <div className="sm:col-span-2">
-                <Input label="Image (URL)" value={p.image} placeholder="https://..." onChange={(v) => {
-                  setWorking((s) => s.map((x) => (x.id === p.id ? { ...x, image: v } : x)));
-                }} />
+              <div className="sm:col-span-2 space-y-3">
+                <Input
+                  label="Image (URL)"
+                  value={p.image}
+                  placeholder="https://..."
+                  onChange={(v) => {
+                    setWorking((s) => s.map((x) => (x.id === p.id ? { ...x, image: v } : x)));
+                  }}
+                />
+                <FileToDataUrl
+                  accept="image/*"
+                  label="Upload Image (langsung)"
+                  helpText="File akan disimpan sebagai data URL di localStorage (tanpa server)."
+                  onPick={(dataUrl) => {
+                    setWorking((s) => s.map((x) => (x.id === p.id ? { ...x, image: dataUrl } : x)));
+                  }}
+                />
               </div>
 
               <div className="sm:col-span-2">
@@ -238,11 +276,21 @@ const GalleryAdminEditor = ({ formGallery, setFormGallery }) => {
 
             <div className="sm:col-span-2">
               <Input
-                label="Source (URL)"
+                label="Source (URL/Data URL)"
                 value={g.src}
-                placeholder={g.type === 'video' ? 'https://...mp4' : 'https://...jpg/png'}
+                placeholder={g.type === 'video' ? 'https://...mp4 atau data URL' : 'https://...jpg/png atau data URL'}
                 onChange={(v) => setWorking((s) => s.map((x) => (x.id === g.id ? { ...x, src: v } : x)))}
               />
+              <div className="mt-3">
+                <FileToDataUrl
+                  accept={g.type === 'video' ? 'video/*' : 'image/*'}
+                  label={g.type === 'video' ? 'Upload Video (langsung)' : 'Upload Image (langsung)'}
+                  helpText="File disimpan sebagai data URL di localStorage (tanpa server)."
+                  onPick={(dataUrl) => {
+                    setWorking((s) => s.map((x) => (x.id === g.id ? { ...x, src: dataUrl } : x)));
+                  }}
+                />
+              </div>
             </div>
 
             <div className="sm:col-span-2">
@@ -340,8 +388,19 @@ const ArtistAdminEditor = ({ social, artist, updateSocial, updateArtist, toast: 
           <Input label="Nama Artis" value={formArtist.name ?? ''} placeholder="Nama artis..." onChange={(v) => setFormArtist((p) => ({ ...p, name: v }))} />
           <Input label="Role" value={formArtist.role ?? ''} placeholder="Artis Utama" onChange={(v) => setFormArtist((p) => ({ ...p, role: v }))} />
 
-          <div className="sm:col-span-2">
-            <Input label="Image Artis (URL)" value={formArtist.image ?? ''} placeholder="https://...jpeg" onChange={(v) => setFormArtist((p) => ({ ...p, image: v }))} />
+          <div className="sm:col-span-2 space-y-3">
+            <Input
+              label="Image Artis (URL/Data URL)"
+              value={formArtist.image ?? ''}
+              placeholder="https://...jpeg atau data URL"
+              onChange={(v) => setFormArtist((p) => ({ ...p, image: v }))}
+            />
+            <FileToDataUrl
+              accept="image/*"
+              label="Upload Foto Artis (langsung)"
+              helpText="File disimpan sebagai data URL di localStorage (tanpa server)."
+              onPick={(dataUrl) => setFormArtist((p) => ({ ...p, image: dataUrl }))}
+            />
           </div>
 
           <div className="sm:col-span-2">
