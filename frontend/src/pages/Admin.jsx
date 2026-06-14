@@ -475,6 +475,10 @@ const Admin = () => {
 
   const navigate = useNavigate();
 
+  // NOTE: Admin panel di episode ini hanya untuk edit konten.
+  // Tidak menampilkan tombol ganti password.
+
+
   const {
     config,
     updateBrand,
@@ -782,8 +786,19 @@ const Admin = () => {
                     <RefreshCcw size={16} className="mr-2" /> Reset ke Default
                   </button>
                   <button
+                    className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/10 px-5 py-3 font-semibold text-purple-200/90 hover:bg-white/15"
+                    onClick={() => navigate('/', { replace: true })}
+                  >
+                    Kembali ke Halaman Depan
+                  </button>
+                  <button
                     className="inline-flex items-center justify-center rounded-full bg-amber-400 px-5 py-3 font-semibold text-purple-950 hover:bg-amber-300"
-                    onClick={onSave}
+                    onClick={() => {
+                      onSave();
+                      setTimeout(() => {
+                        navigate('/', { replace: true });
+                      }, 50);
+                    }}
                   >
                     <Save size={16} className="mr-2" /> Simpan Perubahan
                   </button>
