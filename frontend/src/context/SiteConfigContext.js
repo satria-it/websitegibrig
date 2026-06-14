@@ -52,6 +52,14 @@ export const SiteConfigProvider = ({ children }) => {
     setConfig((prev) => ({ ...prev, testimonials }));
   };
 
+  const updateArtist = (partial) => {
+    setConfig((prev) => ({
+      ...prev,
+      artist: { ...(prev.artist || {}), ...partial },
+    }));
+  };
+
+
   return (
     <SiteConfigContext.Provider
       value={{
@@ -59,12 +67,14 @@ export const SiteConfigProvider = ({ children }) => {
         updateConfig,
         updateBrand,
         updateSocial,
+        updateArtist,
         updateFooter,
         updatePackages,
         updateGallery,
         updateTestimonials,
         setConfig,
       }}
+
     >
       {children}
     </SiteConfigContext.Provider>

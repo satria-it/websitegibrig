@@ -1,7 +1,8 @@
 import React from 'react';
 import { Music2, Youtube, Instagram, Music } from 'lucide-react';
 import { useSiteConfig } from '../../context/SiteConfigContext';
-import { artist } from '../../mock/mock';
+// Artist data now comes from config (editable via admin)
+
 
 const ArtistSection = () => {
   const { config } = useSiteConfig();
@@ -13,11 +14,13 @@ const ArtistSection = () => {
         <div className="relative">
           <div className="relative rounded-3xl overflow-hidden ring-1 ring-purple-200 shadow-[0_30px_80px_-30px_rgba(76,29,149,0.45)] aspect-[4/5] max-w-md mx-auto">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-purple-900 to-purple-950" />
-            <img src={artist.image} alt={artist.name} className="absolute inset-0 w-full h-full object-cover opacity-90" />
+            <img src={config.artist?.image} alt={config.artist?.name} className="absolute inset-0 w-full h-full object-cover opacity-90" />
+
             <div className="absolute inset-0 bg-gradient-to-t from-purple-950 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 text-white">
-              <div className="text-amber-300 text-[10px] uppercase tracking-[0.2em] mb-1">{artist.role}</div>
-              <div className="font-display text-3xl">{artist.name}</div>
+              <div className="text-amber-300 text-[10px] uppercase tracking-[0.2em] mb-1">{config.artist?.role}</div>
+              <div className="font-display text-3xl">{config.artist?.name}</div>
+
             </div>
           </div>
         </div>
@@ -26,7 +29,8 @@ const ArtistSection = () => {
           <div className="flex items-center gap-2 mb-4">
             <span className="w-10 h-px bg-amber-500" />
             <span className="text-[11px] uppercase tracking-[0.22em] text-amber-700 font-semibold">
-              Artis Utama — {artist.name}
+              Artis Utama — {config.artist?.name}
+
             </span>
           </div>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-purple-950 leading-[1.05]">
@@ -35,7 +39,8 @@ const ArtistSection = () => {
             <span className="font-italic-accent">pesona panggung</span>.
           </h2>
           <p className="mt-6 text-purple-900/75 max-w-xl leading-relaxed">
-            {artist.bio}
+            {config.artist?.bio}
+
           </p>
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl">
@@ -46,7 +51,8 @@ const ArtistSection = () => {
 
           <div className="mt-6 inline-flex items-center gap-2 text-purple-900/80 text-sm">
             <Music size={14} className="text-amber-600" />
-            {artist.genres.join(' • ')}
+            {(config.artist?.genres || []).join(' • ')}
+
           </div>
         </div>
       </div>
