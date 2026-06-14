@@ -604,7 +604,7 @@ const Admin = () => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-royal-dark to-purple-950 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-royal-dark to-purple-950 relative overflow-hidden text-black">
 
       <div className="absolute inset-0 grain" />
       <div className="orb bg-purple-500/40 w-[420px] h-[420px] -top-32 -left-24" />
