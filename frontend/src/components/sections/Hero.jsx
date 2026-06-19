@@ -3,7 +3,6 @@ import { Sparkles, Phone, ArrowRight, Music2, Youtube, Instagram } from 'lucide-
 import { useSiteConfig } from '../../context/SiteConfigContext';
 import { artist as mockArtist } from '../../mock/mock';
 
-
 const Hero = () => {
   const { config } = useSiteConfig();
   const { brand, social } = config;
