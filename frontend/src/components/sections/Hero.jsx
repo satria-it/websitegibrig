@@ -1,7 +1,8 @@
 import React from 'react';
 import { Sparkles, Phone, ArrowRight, Music2, Youtube, Instagram } from 'lucide-react';
 import { useSiteConfig } from '../../context/SiteConfigContext';
-import { artist } from '../../mock/mock';
+import { artist as mockArtist } from '../../mock/mock';
+
 
 const Hero = () => {
   const { config } = useSiteConfig();
@@ -31,7 +32,8 @@ const Hero = () => {
           <div>
             <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur border border-purple-200 text-purple-900 text-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-              Live Music • Garut • Bersama {artist.name}
+              Live Music • Garut • Bersama {mockArtist.name}
+
             </div>
 
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-purple-950 leading-[1.05]">
@@ -81,8 +83,9 @@ const Hero = () => {
             <div className="relative mx-auto w-[320px] h-[320px] md:w-[440px] md:h-[440px] rounded-full overflow-hidden ring-gold float">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-purple-900 to-purple-950" />
               <img
-                src={artist.image}
-                alt={artist.name}
+                src={config.hero?.photo || mockArtist.image}
+                alt={mockArtist.name}
+
                 className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-950/60 via-transparent to-transparent" />
@@ -95,7 +98,8 @@ const Hero = () => {
             </div>
 
             <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 bg-white/90 backdrop-blur border border-purple-200 rounded-full px-5 py-2 text-sm text-purple-950 shadow-[0_20px_50px_-20px_rgba(76,29,149,0.45)]">
-              Artis Utama — <span className="font-italic-accent">{artist.name}</span>
+              Artis Utama — <span className="font-italic-accent">{mockArtist.name}</span>
+
             </div>
           </div>
         </div>
