@@ -430,6 +430,30 @@ const HeroAdminEditor = ({ formHero, toast, updateHero }) => {
       </div>
 
       <div className="bg-white/10 border border-white/10 rounded-2xl p-5">
+        <div className="text-amber-300 text-sm font-semibold">Hero Photo</div>
+        <div className="text-purple-200/80 text-xs mt-2">
+          Foto yang ditampilkan di lingkaran kanan pada section Hero.
+        </div>
+
+        <div className="mt-4 grid grid-cols-1 gap-4">
+          <Input
+            label="Hero Photo (URL/Data URL)"
+            value={working.photo ?? ''}
+            placeholder="https://...jpeg/png atau data URL"
+            onChange={(v) => setWorking((p) => ({ ...p, photo: v }))}
+          />
+          <FileToDataUrl
+            accept="image/*"
+            label="Upload Hero Photo (langsung)"
+            helpText="File disimpan sebagai data URL di localStorage (tanpa server)."
+            onPick={(dataUrl) => {
+              setWorking((p) => ({ ...p, photo: dataUrl }));
+            }}
+          />
+        </div>
+      </div>
+
+      <div className="bg-white/10 border border-white/10 rounded-2xl p-5">
         <div className="text-amber-300 text-sm font-semibold">CTA</div>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input
