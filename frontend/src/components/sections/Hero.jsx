@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sparkles, Phone, ArrowRight, Music2, Youtube, Instagram } from 'lucide-react';
 import { useSiteConfig } from '../../context/SiteConfigContext';
-import { heroStats, artist } from '../../mock/mock';
+import { artist } from '../../mock/mock';
 
 const Hero = () => {
   const { config } = useSiteConfig();
@@ -35,23 +35,27 @@ const Hero = () => {
             </div>
 
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-purple-950 leading-[1.05]">
-              Hiburan <span className="font-italic-accent">Berkualitas</span>,
+              {config.hero?.headlineTop || 'Hiburan'}{' '}
+              <span className="font-italic-accent">{config.hero?.headlineAccent || 'Berkualitas'}</span>,
               <br />
-              Momen <span className="font-italic-accent">Tak Terlupakan</span>.
+              {config.hero?.headlineBottom || 'Momen'}{' '}
+              <span className="font-italic-accent">{config.hero?.headlineBottomAccent || 'Tak Terlupakan'}</span>.
             </h1>
 
             <p className="mt-6 text-purple-900/75 text-base md:text-lg max-w-xl leading-relaxed">
-              Gibrig Musik Entertainment menghadirkan musik live spektakuler untuk pernikahan, khitanan, ulang tahun, dan hajatan Anda — formasi lengkap, tim profesional, harga ramah lokasi.
+              {config.hero?.description ||
+                'Gibrig Musik Entertainment menghadirkan musik live spektakuler untuk pernikahan, khitanan, ulang tahun, dan hajatan Anda — formasi lengkap, tim profesional, harga ramah lokasi.'}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#paket"
+                href={config.hero?.ctaHref || '#paket'}
                 className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm"
               >
-                Lihat Paket
+                {config.hero?.ctaLabel || 'Lihat Paket'}
                 <ArrowRight size={16} />
               </a>
+
               <a
                 href={`tel:${brand.phoneRaw}`}
                 className="btn-outline-purple inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm"
@@ -62,7 +66,7 @@ const Hero = () => {
             </div>
 
             <div className="mt-12 grid grid-cols-3 gap-4 max-w-md">
-              {heroStats.map((s) => (
+              {(config.hero?.stats || []).map((s) => (
                 <div key={s.label}>
                   <div className="font-display text-3xl md:text-4xl text-purple-950 font-semibold">
                     {s.value}
@@ -111,3 +115,4 @@ const SocialPill = ({ icon, label, title }) => (
 );
 
 export default Hero;
+
