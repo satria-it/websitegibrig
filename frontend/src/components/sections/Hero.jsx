@@ -84,8 +84,7 @@ const Hero = () => {
               <img
                 src={config.hero?.photo || mockArtist.image}
                 alt={mockArtist.name}
-
-                className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-95"
+                className="absolute inset-0 w-full h-full object-cover opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-950/60 via-transparent to-transparent" />
             </div>
