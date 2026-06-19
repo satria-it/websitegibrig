@@ -1,23 +1,21 @@
-# TODO - Perbaikan Web (Admin & Tampilan)
+# TODO - Admin Panel "Hero / Landing Copy" (Gibrig Entertainment)
 
-## Bagian A — Fix tombol “Simpan Paket” & compile
-- [ ] Rapikan `frontend/src/pages/Admin.jsx` (hapus literal `\r\n` yang tersisip di dalam kode/JSX)
-- [ ] Pastikan tombol **Simpan Paket** memanggil `updatePackages(working)` lewat `onSavePackages`
-- [ ] Pastikan `onSavePackages` di tab paket update ke localStorage via context
+- [ ] Update `frontend/src/mock/mock.js`:
+  - tambah `hero` config (headline, description, ctaLabel, ctaHref)
+  - tambah `heroStats` ke dalam `config.hero.stats` (opsional editable)
+  - (sesuai kebutuhan) tambah `heroPhoto`/`upload` placeholder bila diperlukan
+- [ ] Update `frontend/src/components/sections/Hero.jsx` agar membaca headline/description/cta/stats dari `config.hero` alih-alih hardcode + `heroStats` dari mock.
+  - Tambah dukungan upload foto artis (image) dari `config.artist` sudah ada, tapi headline hero + stats harus editable.
+- [ ] Update `frontend/src/pages/Admin.jsx`:
+  - tambah tab `hero`
+  - buat editor untuk:
+    - Headline
+    - Deskripsi layanan
+    - CTA label (default: Lihat Paket) dan target (#paket)
+    - Stats: 100+ / 3 / 5★ (editable)
+    - Foto (upload) untuk mengganti gambar artis di panel hero (mengarah ke `config.artist.image`).
+- [ ] Jalankan build/dev / cek manual:
+  - login admin, edit hero headline, simpan
+  - refresh Home, verifikasi perubahan tampil
 
-## Bagian B — Panel Admin: ganti logo Artis Utama + list tulisannya
-- [ ] Tambahkan UI input di Admin tab **Artis**:
-  - [ ] uploader/URL untuk gambar logo Artis Utama (Neng Syelfi Oktora)
-  - [ ] editor list tulisan/props yang ingin ditampilkan (sesuai kebutuhan UI frontend)
-- [ ] Pastikan perubahan langsung tampil di section `frontend/src/components/sections/Artist.jsx`
-
-## Bagian C — Hapus “made with emerge”
-- [ ] Cari dan hapus elemen/teks “made with emerge” di frontend (mis. `index.html`, komponen footer, atau file lain)
-
-## Bagian D — Verifikasi
-- [ ] Jalankan build/dev server
-- [ ] Test manual:
-  - [ ] Admin > Paket Musik > edit > klik **Simpan Paket** -> Home berubah
-  - [ ] Admin > Artis Utama -> ganti logo & list -> Home berubah
-  - [ ] Pastikan tidak ada “made with emerge” di halaman
 
