@@ -375,7 +375,8 @@ const Admin = () => {
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-8">
             <div className="flex flex-wrap gap-2">
-              {[{ key: 'header', label: 'Header/Footer' }, { key: 'packages', label: 'Paket Musik' }, { key: 'gallery', label: 'Galeri Momen' }, { key: 'artist', label: 'Artis Utama' }].map((t) => (
+              {[{ key: 'header', label: 'Header/Footer' }, { key: 'packages', label: 'Paket Musik' }, { key: 'gallery', label: 'Galeri Momen' }, { key: 'testimonials', label: 'Testimoni' }, { key: 'artist', label: 'Artis Utama' }].map((t) => (
+
                 <button
                   key={t.key}
                   onClick={() => setActiveTab(t.key)}
@@ -433,7 +434,18 @@ const Admin = () => {
             )}
 
             {activeTab === 'gallery' && <GalleryAdminEditor formGallery={formGallery} setFormGallery={setFormGallery} />}
+            {activeTab === 'testimonials' && (
+              <TestimonialsAdminEditor
+                formTestimonials={formTestimonials}
+                setFormTestimonials={setFormTestimonials}
+                onSaveTestimonials={(next) => {
+                  updateTestimonials(next);
+                  toast.success('Testimoni tersimpan');
+                }}
+              />
+            )}
             {activeTab === 'artist' && <ArtistAdminEditor />}
+
           </div>
 
           <div className="lg:col-span-2">
