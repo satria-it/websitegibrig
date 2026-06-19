@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Phone, ArrowRight, Music2, Youtube, Instagram } from 'lucide-react';
+import { Sparkles, Phone, ArrowRight, Youtube, Instagram } from 'lucide-react';
 import { useSiteConfig } from '../../context/SiteConfigContext';
 import { artist as mockArtist } from '../../mock/mock';
 
