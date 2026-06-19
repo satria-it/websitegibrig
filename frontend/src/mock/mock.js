@@ -37,6 +37,7 @@ export const initialSiteConfig = {
       'Gibrig Musik Entertainment menghadirkan musik live spektakuler untuk pernikahan, khitanan, ulang tahun, dan hajatan Anda — formasi lengkap, tim profesional, harga ramah lokasi.',
     ctaLabel: 'Lihat Paket',
     ctaHref: '#paket',
+    photo: '',
     stats: [
       { value: '100+', label: 'Acara Sukses' },
       { value: '3', label: 'Pilihan Paket' },

@@ -365,6 +365,7 @@ const HeroAdminEditor = ({ formHero, toast, updateHero }) => {
       description: String(working?.description ?? ''),
       ctaLabel: String(working?.ctaLabel ?? ''),
       ctaHref: String(working?.ctaHref ?? ''),
+      photo: String(working?.photo ?? ''),
       stats: Array.isArray(working?.stats)
         ? working.stats.slice(0, 10).map((s) => ({
             value: String(s?.value ?? ''),
