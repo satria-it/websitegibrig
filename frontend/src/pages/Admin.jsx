@@ -1023,7 +1023,7 @@ const Admin = () => {
               <HeroAdminEditor
                 formHero={config.hero}
                 toast={toast}
-                updateHero={(next) => updateConfig({ hero: next })}
+                updateHero={(next) => setConfig((prev) => ({ ...prev, hero: next }))}
               />
             )}
 
