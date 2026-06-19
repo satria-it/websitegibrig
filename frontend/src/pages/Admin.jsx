@@ -1022,8 +1022,6 @@ const Admin = () => {
                 artist={config.artist}
                 updateSocial={updateSocial}
                 updateArtist={updateArtist}
-                formSocialInit={config.social}
-                formArtistInit={config.artist}
                 toast={toast}
               />
             )}
