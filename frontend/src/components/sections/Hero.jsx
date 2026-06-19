@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Phone, ArrowRight, Music2, Youtube, Instagram } from 'lucide-react';
+import { Sparkles, Phone, ArrowRight, Youtube, Instagram } from 'lucide-react';
 import { useSiteConfig } from '../../context/SiteConfigContext';
 import { artist as mockArtist } from '../../mock/mock';
 
@@ -84,8 +84,7 @@ const Hero = () => {
               <img
                 src={config.hero?.photo || mockArtist.image}
                 alt={mockArtist.name}
-
-                className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-95"
+                className="absolute inset-0 w-full h-full object-cover opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-purple-950/60 via-transparent to-transparent" />
             </div>
