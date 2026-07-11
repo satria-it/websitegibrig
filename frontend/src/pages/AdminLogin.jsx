@@ -18,7 +18,7 @@ const AdminLogin = () => {
     setLoading(true);
     // Frontend-only mock auth. Will be replaced by backend later.
     await new Promise((r) => setTimeout(r, 600));
-    if (creds.username === 'admin' && creds.password === 'admin123') {
+    if (creds.username === '@Syelfi30Gibrig#' && creds.password === '@Gibrig!2026') {
       localStorage.setItem('gibrig_admin_token', 'mock-token-' + Date.now());
       toast.success('Login berhasil');
       navigate('/admin');
@@ -77,7 +77,7 @@ const AdminLogin = () => {
           </button>
 
           <div className="mt-5 text-center text-xs text-purple-700/70">
-            Demo: <code className="bg-purple-50 px-1.5 py-0.5 rounded">admin</code> / <code className="bg-purple-50 px-1.5 py-0.5 rounded">admin123</code>
+            Demo: <code className="bg-purple-50 px-1.5 py-0.5 rounded">@Syelfi30Gibrig#</code> / <code className="bg-purple-50 px-1.5 py-0.5 rounded">@Gibrig!2026</code>
           </div>
         </form>
       </div>
