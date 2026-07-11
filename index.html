@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Saya</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --card: rgba(255, 255, 255, 0.06);
+        --text: #e8eefc;
+        --muted: rgba(232, 238, 252, 0.7);
+        --primary: #6ea8fe;
+        --primary2: #7c5cff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: radial-gradient(1200px 600px at 10% 10%, rgba(124, 92, 255, 0.35), transparent 55%),
+          radial-gradient(900px 500px at 80% 20%, rgba(110, 168, 254, 0.35), transparent 60%),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 18px 64px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0 22px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+
+      .logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--primary2));
+        box-shadow: 0 10px 30px rgba(124, 92, 255, 0.35);
+      }
+
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        margin-left: 14px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      nav a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      @media (max-width: 860px) {
+        .hero { grid-template-columns: 1fr; }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        padding: 20px;
+        backdrop-filter: blur(8px);
+      }
+
+      .headline {
+        font-size: 40px;
+        line-height: 1.08;
+        margin: 2px 0 10px;
+      }
+
+      @media (max-width: 520px) {
+        .headline { font-size: 32px; }
+      }
+
+      .sub {
+        color: var(--muted);
+        margin: 0 0 18px;
+        max-width: 58ch;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .ctaRow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .btn {
+        border: 0;
+        cursor: pointer;
+        padding: 12px 16px;
+        border-radius: 14px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        transition: transform 120ms ease, background 120ms ease;
+      }
+
+      .btn:hover { transform: translateY(-1px); background: rgba(255, 255, 255, 0.12); }
+
+      .btnPrimary {
+        background: linear-gradient(135deg, rgba(110, 168, 254, 1), rgba(124, 92, 255, 1));
+        box-shadow: 0 14px 40px rgba(124, 92, 255, 0.25);
+      }
+
+      .btnPrimary:hover {
+        background: linear-gradient(135deg, rgba(110, 168, 254, 1), rgba(124, 92, 255, 0.95));
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .stat {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .pill {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: rgba(110, 168, 254, 0.15);
+        border: 1px solid rgba(110, 168, 254, 0.25);
+        font-size: 18px;
+      }
+
+      .stat b { font-size: 14px; }
+      .stat small { color: var(--muted); display: block; margin-top: 2px; line-height: 1.35; }
+
+      .grid {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      @media (max-width: 860px) {
+        .grid { grid-template-columns: 1fr; }
+      }
+
+      .feature h3 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+
+      .feature p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      footer {
+        margin-top: 26px;
+        color: rgba(232, 238, 252, 0.65);
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        padding: 3px 8px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.06);
+        color: rgba(232, 238, 252, 0.85);
+      }
+
+      /* Smooth scroll */
+      html { scroll-behavior: smooth; }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div style="font-size: 14px; color: rgba(232,238,252,0.8); font-weight:700; letter-spacing:0.5px;">WEBSITE</div>
+            <div style="font-size: 18px;">gibrig</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#tentang">Tentang</a>
+          <a href="#fitur">Fitur</a>
+          <a href="#kontak">Kontak</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="card">
+          <h1 class="headline">Tampilkan website Anda di sini.</h1>
+          <p class="sub">
+            Ini template sederhana (HTML + CSS) yang siap langsung dibuka di browser.
+            Ganti teks, warna, dan bagian fitur sesuai kebutuhan Anda.
+          </p>
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="#kontak">Mulai sekarang</a>
+            <a class="btn" href="#fitur">Lihat fitur</a>
+          </div>
+        </div>
+
+        <aside class="stats">
+          <div class="stat">
+            <div class="pill" aria-hidden="true">⚡</div>
+            <div>
+              <b>Ringan & cepat</b>
+              <small>Tanpa framework, langsung jalan.</small>
+            </div>
+          </div>
+          <div class="stat">
+            <div class="pill" style="background: rgba(124, 92, 255, 0.15); border-color: rgba(124, 92, 255, 0.25);" aria-hidden="true">🧩</div>
+            <div>
+              <b>Struktur jelas</b>
+              <small>Section Tentang, Fitur, Kontak.</small>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="tentang" class="grid" aria-label="Tentang">
+        <div class="card feature" style="grid-column: span 1;">
+          <h3>Tujuan</h3>
+          <p>Membuat landing page yang bisa langsung ditampilkan tanpa konfigurasi build.</p>
+        </div>
+        <div class="card feature" style="grid-column: span 1;">
+          <h3>Konten mudah diganti</h3>
+          <p>Semua teks ada di file <span class="kbd">index.html</span>.</p>
+        </div>
+        <div class="card feature" style="grid-column: span 1;">
+          <h3>Responsif</h3>
+          <p>Layout menyesuaikan layar HP maupun desktop.</p>
+        </div>
+      </section>
+
+      <section id="fitur" class="grid" aria-label="Fitur">
+        <div class="card feature">
+          <h3>Desain modern</h3>
+          <p>Gradient background + kartu transparan untuk tampilan bersih.</p>
+        </div>
+        <div class="card feature">
+          <h3>Navigasi cepat</h3>
+          <p>Menu atas langsung menuju section via anchor.</p>
+        </div>
+        <div class="card feature">
+          <h3>CTA jelas</h3>
+          <p>Tombol mengarahkan user ke bagian kontak.</p>
+        </div>
+      </section>
+
+      <section id="kontak" style="margin-top: 14px;">
+        <div class="card">
+          <h2 style="margin: 0 0 8px; font-size: 20px;">Kontak</h2>
+          <p class="sub" style="margin-bottom: 12px;">Ganti email/telepon/tautan sesuai kebutuhan.</p>
+          <div class="ctaRow">
+            <a class="btn" href="mailto:hello@example.com">hello@example.com</a>
+            <a class="btn" href="tel:+62123456789">+62 12-3456-789</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> gibrig. Semua hak dilindungi.</div>
+        <div>
+          Buka file ini langsung: <span class="kbd">index.html</span>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
+
